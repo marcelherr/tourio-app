@@ -25,4 +25,11 @@ export default async function handler(request, response) {
       response.status(400).json({ error: error.message });
     }
   }
+  if (request.method === "PUT") {
+    const placeData = request.body;
+
+    await Places.findByIdAndUpdate(id, placeData);
+
+    return response.status(200).json({ status: `Place ${id} updated!` });
+  }
 }
